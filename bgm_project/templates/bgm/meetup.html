@@ -1,0 +1,25 @@
+{% extends 'bgm/base.html' %}
+
+{% block body_block %}
+    {% if meetup.picture %}
+        <div style='float: left; padding: 1em;'>
+	    <img src='/bgm_app/media/{{meetup.picture}}' 
+            style='max-height: 50px;'>
+	    </div>
+    {% endif %}
+    <h2>Meetup: {{ meetup.name }}</h2> 
+    <a href="/bgm_app/meetup/{{meetup.id}}/join">Join!</a>
+
+    <div style='clear: both'>
+    {% if members %}
+    <h3>Members</h3>
+    	<ul>
+    	{% for member in members %}
+    		<li>{{member.name}}</li>
+    	{% endfor %}
+    	</ul>
+    {% else %}
+    There are no members yet. Be the first!
+    {% endif %}
+	</div>
+{% endblock %}    

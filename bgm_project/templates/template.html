@@ -1,0 +1,77 @@
+{% load static %}<html>
+<head>
+	<title>Django template page - full html</title>
+</head>
+<body>		
+	<h1>Template page</h1>
+	<p>this template uses all the html. Read more at <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/">Djano Template Documentation</a></p>
+	
+
+    <hr>
+    <h2>Print from variable</h2>
+    <pre>
+	{% templatetag openvariable %} variableName {% templatetag closevariable %}
+	{% templatetag openvariable %} variableName.property {% templatetag closevariable %} </pre>
+
+    <h4>Data is by default escaped</h4>
+    <div>{{ viewdata.html }}</div>
+    <br>
+    Switch off auto escape: 
+    <pre>
+    {% templatetag openblock %} autoescape off {% templatetag closeblock %} {% templatetag openvariable %} viewdata.html {% templatetag closevariable %} {% templatetag openblock %} endautoescape</pre>
+    <h4>Auto escape off</h4>
+    <div>{% autoescape off %}{{ viewdata.html }}{% endautoescape %}</div>
+    <HR>
+
+    <h2>Image in the static directory</h2>
+    Load at top of template
+    <pre>
+    {% templatetag openblock %} load static {% templatetag closeblock %}</pre>
+    Actually showing the image
+    <pre>
+    {% templatetag openblock %} static "nobody_50.png" {% templatetag closeblock %}</pre>
+    Same as <pre> 
+    /static/nobody_50.png </pre>
+    <img src="{% static "nobody_50.png" %}" alt="meetup" /> 
+
+
+    <hr>
+    <h2>Conditional statement</h2>
+    <pre>
+    {% templatetag openblock %} if viewdata.page {% templatetag closeblock %}
+    	There is a page named <b>{% templatetag openvariable %} viewdata.page {% templatetag closevariable %}</b>
+    {% templatetag openblock %} else {% templatetag closeblock %}
+    	There is a page
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} for value in viewdata.array {% templatetag closeblock %}
+    	Value: {% templatetag openvariable %} value {% templatetag closevariable %}
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+    </pre>
+
+    <div>
+    {% if viewdata.page %}
+    	There is a page named <b>{{ viewdata.page }}</b>
+    {% else %}
+    	There is a page
+    {% endif %}
+    </div>
+    <div>
+    {% if viewdata.amount %}
+    	Amount is: {{ viewdata.amount }}
+    {% else %}
+    	There is no amount
+    {% endif %}
+    </div>
+	<hr>    
+    <h2>Loops</h2>
+    <pre>
+    {% templatetag openblock %} for value in viewdata.array {% templatetag closeblock %}
+    	Value: {% templatetag openvariable %} value {% templatetag closevariable %}
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+    </pre>
+
+    {% for value in viewdata.array %}
+    	Value: {{value}}<BR>
+    {% endfor %}
+</body>
+</html>

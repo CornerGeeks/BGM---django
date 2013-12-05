@@ -1,0 +1,26 @@
+{% extends 'bgm/base.html' %}
+
+{% block body_block %}
+    {% if last %}
+	    <h2>Last 5 Registered</h2>
+	    <ol>
+	    {% for meetup in last %}
+	    	<li><a href='/bgm_app/meetup/{{meetup.id}}'>{{meetup.name}}</a> ({{meetup.created}})</li>
+	    {% endfor %}
+	    </ol>
+	{% else %}
+		
+    {% endif %}
+
+    {% if meetups %}
+	    <h2>Meetups Registered</h2>
+	    <ol>
+	    {% for meetup in meetups %}
+	    	<li><a href='/bgm_app/meetup/{{meetup.id}}'>{{meetup.name}}</a> ({{meetup.created}})</li>
+	    {% endfor %}
+	    </ol>
+	{% else %}
+		No meetups yet =(
+    {% endif %}
+{% endblock %}
+

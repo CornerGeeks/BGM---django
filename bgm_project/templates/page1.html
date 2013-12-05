@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Page 1{% endblock %}
+{% block body_header %}This is page 1{% endblock %}
+{% block body_block %}
+    <h1>{{ category_name }}</h1>
+
+    {% if viewdata.pages %}
+    <ul>
+        {% for page in viewdata.pages %}
+        <li><a href="{{ page.url }}">{{ page.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>No pages currently in category.</strong>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+       <a href="/rango/category/{{category_url}}/add_page/">Add a Page</a>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BGM - {% block title %}{% endblock %} </title>
+        <style>
+        	h1 {
+        		background-color: #ccc;
+        		padding: 5px;
+        		border-radius: 3px;
+        	}
+        </style>
+    </head>
+    <body>
+    	<h1>This is the base template</h1>
+    	<h3>{% block body_header %}{% endblock %}</h3>
+        {% block body_block %}
+        This is body_block's default content.
+        {% endblock %}
+		{% if viewdata and viewdata.pages %}
+				Base template says, we have pages
+		{% endif %}
+    </body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'bgm/base.html' %}
+{% block body_block %}
+<h3>Form base</h3>
+<form id="user_form" method="post" action="/bgm_app/register/"
+        enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+        <input type="submit" name="submit" value="Register" />
+</form>
+
+
+<h3>Field based</h3>
+<form id="user_form" method="post" action="/bgm_app/register/"
+        enctype="multipart/form-data">
+		{% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    
+    {% for field in form.visible_fields %}
+    	<div style='border: 1px solid gray; margin-bottom: 1em; padding: 5px;'>
+	        <div>{{ field.name | capfirst }}:</div>
+	        <div>{{ field.errors }}</div>
+	        <div>{{ field }}</div>
+	        <div>{{ field.help_text}}</div>
+	    </div>
+    {% endfor %}
+    <input type="submit" name="submit" value="Register" />
+</form>
+
+
+{% endblock %}

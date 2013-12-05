@@ -1,0 +1,13 @@
+<h1>Index page</h1>
+<a href="/dj/add">Add meetup</a>
+{% if meetups %}
+	{% for meetup in meetups %}
+	<li>{{meetup.name}}
+		{% if meetup.picture %}
+		<img style='max-height: 50px' src='/media/{{meetup.picture}}'>
+		{% endif %}
+	</li>
+	{% endfor %}
+{% else %}
+No meetups available
+{% endif %}
